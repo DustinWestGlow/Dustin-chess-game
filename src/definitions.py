@@ -30,16 +30,34 @@ class Board():
             for piece in row:
                 row_string += piece.__str__() + ' / '
             print(row_string)
+    def get_piece_from_tile(self, tile):
+        row = tile[0]
+        col = tile[1]
+        return self.board[row][col]
+    def move(self, piece, new_position):
+        old_row = piece.position[0]
+        old_col = piece.position[1]
+        new_row = new_position[0]
+        new_col = new_position[1]
+        self.board[old_row][old_col] = None
+        self.board[new_row][new_col] = piece
+        piece.position = new_position
+        self.state.turn = variables.turn_flipper[self.state.turn]
+    def is_turn_piece(self, piece):
+        if not piece:
+            return False
+        return piece.color == self.state.turn
 
 class GameState():
     def __init__(self):
         self.dead = []
         self.turn = 'white'
-        self.picked = None
+        self.previously_selected = None
         return
     def capture(self, moving_piece, dying_piece):
-        self.dead.append([element for element in self.pieces if (p.position == element.position)][0])
-        self.pieces = [element for element in self.pieces if (not p.position == element.position)]
+        return
+        # self.dead.append([element for element in self.pieces if (p.position == element.position)][0])
+        # self.pieces = [element for element in self.pieces if (not p.position == element.position)]
 
 class Player():
     def __init__(self, name):

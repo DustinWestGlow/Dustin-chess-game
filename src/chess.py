@@ -2,15 +2,16 @@ import random
 import time
 import sys
 
-from variables import *
-from definitions import *
-from assets import *
-from drawing import *
-from engine import *
-
 import pygame
 from pygame.locals import *
 pygame.init()
+
+from variables import *
+from definitions import *
+from get_assets import *
+from drawing import *
+from engine import *
+from events import *
 
 main_game = ChessGame()
 # main_game.board.print_board()
@@ -28,8 +29,8 @@ def main():
     generate_piece_images(images, piece_edge_pixel_count)
     while True:
         getters = pygame.event.get()
-        handle_mouse(getters, mode)
-        handle_keyboard(getters, mode)
+        handle_mouse(getters, board, mode)
+        handle_keyboard(getters, board, mode)
         handle_possible_close(getters)
         draw_board(board)
         pygame.display.update()

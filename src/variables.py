@@ -27,7 +27,7 @@ player_hash = {
 images = dict()
 
 colors = {
-    'desire': (15, 100, 255),
+    'selected': (15, 100, 255),
     'white': (230, 232, 195),
     'black': (92, 140, 70),
     'turn': (255, 255, 150)
@@ -49,4 +49,8 @@ row_indexes = {
         'white': 0,
         'black': 7
     }
+}
+turn_flipper = {
+    'white': 'black',
+    'black': 'white'
 }

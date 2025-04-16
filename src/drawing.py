@@ -1,6 +1,5 @@
 import pygame
 from variables import *
-import engine
 
 def color_tile(position, color):
     row = position[0]
@@ -50,9 +49,9 @@ def draw_board(board):
     else:
         color_tile((7, 0), colors['turn'])
     # highlight desired tiles
-    picked = board.state.picked
-    if picked:
-        color_tile(picked.position, colors['desire'])
+    selected = board.state.previously_selected
+    if selected:
+        color_tile(selected.position, colors['selected'])
     # then draw pieces
     for row in board.board:
         for piece in row:
